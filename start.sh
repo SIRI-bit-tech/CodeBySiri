@@ -26,6 +26,10 @@ except Exception as e:
     print(f'Error creating superuser: {e}')
 "
 
+# Compress CSS/JS files for production
+echo "Compressing static files..."
+python manage.py compress --force
+
 # Collect static files
 echo "Collecting static files..."
 python manage.py collectstatic --no-input --clear

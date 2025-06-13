@@ -145,8 +145,9 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Django Compressor settings
-COMPRESS_ENABLED = True
+# Django Compressor settings - Disable in production, use pre-compiled CSS
+COMPRESS_ENABLED = not DEBUG  # Only compress in production
+COMPRESS_OFFLINE = not DEBUG  # Use offline compression in production
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
