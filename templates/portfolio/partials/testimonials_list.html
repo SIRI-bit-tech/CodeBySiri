@@ -1,0 +1,54 @@
+{% if testimonials %}
+    <div class="grid-x grid-margin-x medium-up-3">
+        {% for testimonial in testimonials %}
+            <div class="cell">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"{{ testimonial.testimonial_text }}"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        {% if testimonial.client_photo %}
+                            <div class="author-image">
+                                <img src="{{ testimonial.client_photo.url }}" alt="{{ testimonial.client_name }}">
+                            </div>
+                        {% endif %}
+                        <div class="author-info">
+                            <h4>{{ testimonial.client_name }}</h4>
+                            {% if testimonial.client_company %}
+                                <p>{{ testimonial.client_company }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if promises %}
+    <div class="grid-x grid-margin-x">
+        {% for promise in promises %}
+            <div class="cell medium-6 large-4">
+                <div class="promise-card">
+                    <div class="promise-content">
+                        <p>{{ promise.text }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if has_more %}
+    <div class="grid-x align-center">
+        <div class="cell shrink">
+            <button class="button secondary load-more"
+                    hx-get="{% url 'portfolio:testimonials_list' %}?offset={{ next_offset }}&limit={{ limit }}"
+                    hx-target="#testimonials-container"
+                    hx-swap="outerHTML"
+                    hx-trigger="click">
+                Load More
+            </button>
+        </div>
+    </div>
+{% endif %}

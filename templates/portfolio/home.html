@@ -1,0 +1,238 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Hero Section -->
+<section id="hero" class="hero-section">
+    <div class="grid-container">
+        <div class="grid-x grid-margin-x align-middle">
+            <div class="cell medium-6">
+                <h1 class="hero-title">
+                    <span class="accent-text">Expert</span>
+                    <span class="typing-element"></span>
+                </h1>
+                <p class="hero-subtitle">Delivering high-quality web solutions with speed and precision.</p>
+                <div class="button-group">
+                    <a href="#projects" class="button primary large" data-smooth-scroll>View Projects</a>
+                    <a href="#contact" class="button secondary large" data-smooth-scroll>Get in Touch</a>
+                </div>
+            </div>
+            <div class="cell medium-6">
+                <div class="hero-image">
+                    <img src="{{ MEDIA_URL }}hero-image.svg" alt="CodeBySiri" class="hero-img">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="services-section">
+    <div class="grid-container">
+        <div class="section-header">
+            <h2>Our Services</h2>
+            <p>Comprehensive web development solutions crafted with expertise</p>
+        </div>
+
+        <div class="grid-x grid-margin-x">
+            <div class="cell medium-8 medium-offset-2 large-6 large-offset-3">
+                <div class="pricing-package">
+                    <h3>Starter Website Package – $250</h3>
+                    <ul class="package-features">
+                        <li>Up to 3 pages</li>
+                        <li>Mobile-friendly design</li>
+                        <li>AI-generated content & SEO setup</li>
+                        <li>Delivered within 2weeks-1month</li>
+                    </ul>
+                    <a href="#contact" class="button primary" data-smooth-scroll>Get Started</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-x grid-margin-x medium-up-3">
+            <div class="cell">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Custom websites and web applications built with modern frameworks and technologies.</p>
+                </div>
+            </div>
+            <div class="cell">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Responsive Design</h3>
+                    <p>Mobile-first designs that work flawlessly across all devices and screen sizes.</p>
+                </div>
+            </div>
+            <div class="cell">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Performance Optimization</h3>
+                    <p>Speed up your website with advanced optimization techniques and best practices.</p>
+                </div>
+            </div>
+            <div class="cell">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Backend Development</h3>
+                    <p>Robust server-side solutions with Django, Python, and modern databases.</p>
+                </div>
+            </div>
+            <div class="cell">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>SEO Optimization</h3>
+                    <p>Improve your search engine rankings with technical SEO and content optimization.</p>
+                </div>
+            </div>
+            <div class="cell">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>API Integration</h3>
+                    <p>Seamless integration with third-party services and APIs for extended functionality.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="projects-section">
+    <div class="grid-container">
+        <div class="section-header">
+            <h2>Our Projects</h2>
+            <p>Explore our latest work and success stories</p>
+        </div>
+
+        <div class="project-filter">
+            <ul class="menu align-center">
+                <li>
+                    <a href="#"
+                       class="active"
+                       hx-get="{% url 'portfolio:projects_list' %}"
+                       hx-target="#projects-container"
+                       hx-trigger="click"
+                       hx-swap="innerHTML">
+                        All
+                    </a>
+                </li>
+                {% for category in categories %}
+                <li>
+                    <a href="#"
+                       hx-get="{% url 'portfolio:projects_by_category' category.slug %}"
+                       hx-target="#projects-container"
+                       hx-trigger="click"
+                       hx-swap="innerHTML">
+                        {{ category.name }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div id="projects-container" class="grid-x grid-margin-x medium-up-2 large-up-3">
+            {% include 'portfolio/partials/projects_list.html' with projects=featured_projects %}
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="testimonials-section">
+    <div class="grid-container">
+        <div class="section-header">
+            <h2>My Commitment</h2>
+            <p>Dedicated service for every client</p>
+        </div>
+
+        <div class="grid-x grid-margin-x">
+            <div class="cell medium-8 medium-offset-2">
+                <div class="commitment-message">
+                    <p>Every project I take on gets my full focus. I only work with 1–2 clients at a time so I can deliver fast and with quality.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="testimonials-container">
+            {% include 'portfolio/partials/testimonials_list.html' with testimonials=testimonials promises=promises limit=3 next_offset=3 %}
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <div class="grid-container">
+        <div class="section-header">
+            <h2>Get In Touch</h2>
+            <p>Have a project in mind? Let's discuss how we can help.</p>
+        </div>
+
+        <div class="grid-x grid-margin-x">
+            <div class="cell medium-6">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>hello@codebysiri.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>San Francisco, CA</span>
+                    </div>
+
+                    <div class="social-icons">
+                        <a href="https://github.com/SIRI-bit-tech" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/siri-tech/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+<!--                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>-->
+                        <a href="https://www.instagram.com/bigsiri12/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="cell medium-6">
+                <div id="contact-form-container">
+                    {% include 'portfolio/partials/contact_form.html' with form=contact_form %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize typing animation
+        var typed = new Typed('.typing-element', {
+            strings: ['Web Development', 'UI/UX Design', 'Backend Solutions', 'API Integration'],
+            typeSpeed: 80,
+            backSpeed: 50,
+            backDelay: 1500,
+            startDelay: 500,
+            loop: true
+        });
+
+        // Project filter active state
+        const filterLinks = document.querySelectorAll('.project-filter a');
+        filterLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                filterLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    });
+</script>
+{% endblock %}

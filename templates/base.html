@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>{% block title %}{{ site_name }} - Professional Web Development{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}{{ site_description }}{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}{{ site_keywords }}{% endblock %}">
+    <meta name="author" content="{{ site_author }}">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{% block canonical_url %}{{ site_url }}{{ request.path }}{% endblock %}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:url" content="{% block og_url %}{{ site_url }}{{ request.path }}{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}{{ site_name }} - Professional Web Development{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ site_description }}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ site_url }}/static/img/og-image.png{% endblock %}">
+    {% if facebook_app_id %}<meta property="fb:app_id" content="{{ facebook_app_id }}">{% endif %}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="{{ twitter_username }}">
+    <meta name="twitter:title" content="{% block twitter_title %}{{ site_name }} - Professional Web Development{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{{ site_description }}{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{{ site_url }}/static/img/twitter-image.png{% endblock %}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% block favicon %}{{ site_url }}/static/img/favicon.png{% endblock %}">
+    <link rel="apple-touch-icon" href="{% block apple_touch_icon %}{{ site_url }}/static/img/apple-touch-icon.png{% endblock %}">
+
+    <!-- Foundation CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/css/foundation.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    {% load static %}
+    {% load compress %}
+    {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/main.scss' %}">
+    {% endcompress %}
+
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "{{ site_name }}",
+      "description": "{{ site_description }}",
+      "url": "{{ site_url }}",
+      "logo": "{{ site_url }}/static/img/logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "San Francisco",
+        "addressRegion": "CA",
+        "addressCountry": "US"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-555-123-4567",
+        "contactType": "customer service"
+      },
+      "sameAs": [
+        "https://twitter.com/{{ twitter_username|cut:'@' }}",
+        "https://github.com/codebysiri",
+        "https://linkedin.com/in/codebysiri"
+      ]
+    }
+    </script>
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <div class="off-canvas-wrapper">
+        <!-- Off-canvas menu for mobile -->
+        <div class="off-canvas position-left" id="mobile-menu" data-off-canvas>
+            <div class="grid-y grid-padding-y" style="height: 100%;">
+                <div class="cell shrink">
+                    <div class="mobile-menu-header">
+                        <h4>CodeBySiri</h4>
+                        <button class="close-button" aria-label="Close menu" type="button" data-close>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="cell auto">
+                    <ul class="vertical menu">
+                        <li><a href="#hero" data-smooth-scroll>Home</a></li>
+                        <li><a href="#services" data-smooth-scroll>Services</a></li>
+                        <li><a href="#projects" data-smooth-scroll>Projects</a></li>
+                        <li><a href="#testimonials" data-smooth-scroll>Testimonials</a></li>
+                        <li><a href="#contact" data-smooth-scroll>Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="off-canvas-content" data-off-canvas-content>
+            <!-- Top navigation -->
+            <div class="top-bar" id="main-menu">
+                <div class="top-bar-left">
+                    <a href="#hero" class="logo" data-smooth-scroll>
+                        <span class="logo-text">CodeBySiri</span>
+                    </a>
+                </div>
+                <div class="top-bar-right show-for-medium">
+                    <ul class="menu">
+                        <li><a href="#hero" data-smooth-scroll>Home</a></li>
+                        <li><a href="#services" data-smooth-scroll>Services</a></li>
+                        <li><a href="#projects" data-smooth-scroll>Projects</a></li>
+                        <li><a href="#testimonials" data-smooth-scroll>Testimonials</a></li>
+                        <li><a href="#contact" data-smooth-scroll>Contact</a></li>
+                    </ul>
+                </div>
+                <div class="top-bar-right hide-for-medium">
+                    <button class="menu-icon" type="button" data-open="mobile-menu"></button>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <main>
+                {% block content %}{% endblock %}
+            </main>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="grid-container">
+                    <div class="grid-x grid-margin-x">
+                        <div class="cell medium-4">
+                            <h4>CodeBySiri</h4>
+                            <p>Professional web development services with a focus on speed and quality delivery.</p>
+                        </div>
+                        <div class="cell medium-4">
+                            <h4>Quick Links</h4>
+                            <ul class="no-bullet">
+                                <li><a href="#hero" data-smooth-scroll>Home</a></li>
+                                <li><a href="#services" data-smooth-scroll>Services</a></li>
+                                <li><a href="#projects" data-smooth-scroll>Projects</a></li>
+                                <li><a href="#testimonials" data-smooth-scroll>Testimonials</a></li>
+                                <li><a href="#contact" data-smooth-scroll>Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="cell medium-4">
+                            <h4>Connect</h4>
+                            <div class="social-icons">
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-x">
+                        <div class="cell">
+                            <div class="copyright">
+                                &copy; {% now "Y" %} CodeBySiri. All rights reserved.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Project detail modal -->
+    <div class="reveal" id="project-modal" data-reveal>
+        <div id="project-modal-content">
+            <!-- Content will be loaded via HTMX -->
+        </div>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <!-- Foundation JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/js/foundation.min.js"></script>
+
+    <!-- Typed.js for typing animation -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+    <!-- Custom JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <script>
+        $(document).foundation();
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

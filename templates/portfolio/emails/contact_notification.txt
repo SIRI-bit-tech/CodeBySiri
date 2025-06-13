@@ -1,0 +1,10 @@
+New Contact Message from CodeBySiri Website
+
+Name: {{ contact.name }}
+Email: {{ contact.email }}
+Subject: {{ contact.subject }}
+
+Message:
+{{ contact.message }}
+
+Received on: {{ contact.created_at }}

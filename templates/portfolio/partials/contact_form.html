@@ -1,0 +1,56 @@
+<form hx-post="{% url 'portfolio:contact_submit' %}"
+      hx-target="#contact-form-container"
+      hx-swap="innerHTML"
+      hx-indicator=".form-indicator"
+      class="contact-form">
+    {% csrf_token %}
+
+    <div class="grid-x grid-margin-x">
+        <div class="cell medium-6">
+            <label>
+                Name
+                {{ form.name }}
+                {% if form.name.errors %}
+                <span class="form-error is-visible">{{ form.name.errors.0 }}</span>
+                {% endif %}
+            </label>
+        </div>
+        <div class="cell medium-6">
+            <label>
+                Email
+                {{ form.email }}
+                {% if form.email.errors %}
+                <span class="form-error is-visible">{{ form.email.errors.0 }}</span>
+                {% endif %}
+            </label>
+        </div>
+        <div class="cell">
+            <label>
+                Subject
+                {{ form.subject }}
+                {% if form.subject.errors %}
+                <span class="form-error is-visible">{{ form.subject.errors.0 }}</span>
+                {% endif %}
+            </label>
+        </div>
+        <div class="cell">
+            <label>
+                Message
+                {{ form.message }}
+                {% if form.message.errors %}
+                <span class="form-error is-visible">{{ form.message.errors.0 }}</span>
+                {% endif %}
+            </label>
+        </div>
+        <div class="cell">
+            <button type="submit" class="button primary expanded">
+                <span class="button-text">Send Message</span>
+                <span class="form-indicator htmx-indicator">
+                    <i class="fas fa-spinner fa-spin"></i> Sending...
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <div id="form-messages"></div>
+</form>

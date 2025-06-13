@@ -1,0 +1,6 @@
+Hello {{ name }},
+
+Thank you for contacting CodeBySiri. We have received your message and will get back to you as soon as possible.
+
+Best regards,
+The CodeBySiri Team

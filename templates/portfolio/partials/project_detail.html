@@ -1,0 +1,19 @@
+<div class="project-detail">
+    <div class="grid-x grid-margin-x">
+        <div class="cell medium-6">
+            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-detail-image">
+        </div>
+        <div class="cell medium-6">
+            <h2>{{ project.title }}</h2>
+            <p class="project-category">{{ project.category.name }}</p>
+            <div class="project-description">
+                {{ project.description|linebreaks }}
+            </div>
+            {% if project.live_url %}
+            <a href="{{ project.live_url }}" class="button primary" target="_blank" rel="noopener noreferrer">
+                Visit Live Site
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
