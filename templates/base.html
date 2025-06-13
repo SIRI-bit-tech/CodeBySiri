@@ -89,97 +89,66 @@
     {% block extra_head %}{% endblock %}
 </head>
 <body>
-    <div class="off-canvas-wrapper">
-        <!-- Off-canvas menu for mobile -->
-        <div class="off-canvas position-left" id="mobile-menu" data-off-canvas>
-            <div class="grid-y grid-padding-y" style="height: 100%;">
-                <div class="cell shrink">
-                    <div class="mobile-menu-header">
-                        <h4>CodeBySiri</h4>
-                        <button class="close-button" aria-label="Close menu" type="button" data-close>
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="cell auto">
-                    <ul class="vertical menu">
-                        <li><a href="#hero" data-smooth-scroll>Home</a></li>
-                        <li><a href="#services" data-smooth-scroll>Services</a></li>
-                        <li><a href="#projects" data-smooth-scroll>Projects</a></li>
-                        <li><a href="#testimonials" data-smooth-scroll>Testimonials</a></li>
-                        <li><a href="#contact" data-smooth-scroll>Contact</a></li>
-                    </ul>
-                </div>
-            </div>
+    <!-- Top navigation -->
+    <div class="top-bar" id="main-menu">
+        <div class="top-bar-left">
+            <a href="#hero" class="logo" data-smooth-scroll>
+                <img src="{% static 'img/logo.svg' %}" alt="CodeBySiri" class="logo-image" height="40">
+            </a>
         </div>
-
-        <!-- Main content -->
-        <div class="off-canvas-content" data-off-canvas-content>
-            <!-- Top navigation -->
-            <div class="top-bar" id="main-menu">
-                <div class="top-bar-left">
-                    <a href="#hero" class="logo" data-smooth-scroll>
-                        <img src="{% static 'img/logo.svg' %}" alt="CodeBySiri" class="logo-image" height="40">
-                    </a>
-                </div>
-                <div class="top-bar-right show-for-medium">
-                    <ul class="menu">
-                        <li><a href="#hero" data-smooth-scroll>Home</a></li>
-                        <li><a href="#services" data-smooth-scroll>Services</a></li>
-                        <li><a href="#projects" data-smooth-scroll>Projects</a></li>
-                        <li><a href="#testimonials" data-smooth-scroll>Testimonials</a></li>
-                        <li><a href="#contact" data-smooth-scroll>Contact</a></li>
-                    </ul>
-                </div>
-                <div class="top-bar-right hide-for-medium">
-                    <button class="menu-icon" type="button" data-open="mobile-menu">☰</button>
-                </div>
-            </div>
-
-            <!-- Main content -->
-            <main>
-                {% block content %}{% endblock %}
-            </main>
-
-            <!-- Footer -->
-            <footer class="footer">
-                <div class="grid-container">
-                    <div class="grid-x grid-margin-x">
-                        <div class="cell medium-4">
-                            <h4>CodeBySiri</h4>
-                            <p>Professional web development services with a focus on speed and quality delivery.</p>
-                        </div>
-                        <div class="cell medium-4">
-                            <h4>Quick Links</h4>
-                            <ul class="no-bullet">
-                                <li><a href="#hero" data-smooth-scroll>Home</a></li>
-                                <li><a href="#services" data-smooth-scroll>Services</a></li>
-                                <li><a href="#projects" data-smooth-scroll>Projects</a></li>
-                                <li><a href="#testimonials" data-smooth-scroll>Testimonials</a></li>
-                                <li><a href="#contact" data-smooth-scroll>Contact</a></li>
-                            </ul>
-                        </div>
-                        <div class="cell medium-4">
-                            <h4>Connect</h4>
-                            <div class="social-icons">
-                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid-x">
-                        <div class="cell">
-                            <div class="copyright">
-                                &copy; {% now "Y" %} CodeBySiri. All rights reserved.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+        <div class="top-bar-right show-for-medium">
+            <ul class="menu">
+                <li><a href="#hero" data-smooth-scroll>Home</a></li>
+                <li><a href="#services" data-smooth-scroll>Services</a></li>
+                <li><a href="#projects" data-smooth-scroll>Projects</a></li>
+                <li><a href="#testimonials" data-smooth-scroll>Testimonials</a></li>
+                <li><a href="#contact" data-smooth-scroll>Contact</a></li>
+            </ul>
         </div>
     </div>
+
+    <!-- Main content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="grid-container">
+            <div class="grid-x grid-margin-x">
+                <div class="cell medium-4">
+                    <h4>CodeBySiri</h4>
+                    <p>Professional web development services with a focus on speed and quality delivery.</p>
+                </div>
+                <div class="cell medium-4">
+                    <h4>Quick Links</h4>
+                    <ul class="no-bullet">
+                        <li><a href="#hero" data-smooth-scroll>Home</a></li>
+                        <li><a href="#services" data-smooth-scroll>Services</a></li>
+                        <li><a href="#projects" data-smooth-scroll>Projects</a></li>
+                        <li><a href="#testimonials" data-smooth-scroll>Testimonials</a></li>
+                        <li><a href="#contact" data-smooth-scroll>Contact</a></li>
+                    </ul>
+                </div>
+                <div class="cell medium-4">
+                    <h4>Connect</h4>
+                    <div class="social-icons">
+                        <a href="https://github.com/SIRI-bit-tech" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/siri-tech/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+<!--                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>-->
+                        <a href="https://www.instagram.com/bigsiri12/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-x">
+                <div class="cell">
+                    <div class="copyright">
+                        &copy; {% now "Y" %} CodeBySiri. All rights reserved.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- Project detail modal -->
     <div class="reveal" id="project-modal" data-reveal>
