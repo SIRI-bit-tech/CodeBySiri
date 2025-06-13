@@ -28,11 +28,15 @@ def home(request):
 
     contact_form = ContactForm()
 
-    # Get SEO settings
+    # Get SEO settings with error handling
+    seo_settings = None
     try:
         seo_settings = SeoSettings.objects.first()
-    except:
-        seo_settings = None
+    except Exception as e:
+        # Log the error but continue
+        import logging
+        logger = logging.getLogger(__name__)
+        logger.error(f"Error loading SEO settings in view: {e}")
 
     context = {
         'categories': categories,
