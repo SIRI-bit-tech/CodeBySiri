@@ -139,6 +139,11 @@ a {
     font-size: 1.5rem;
     color: $primary-color;
   }
+
+  .logo-image {
+    height: 40px;
+    width: auto;
+  }
 }
 
 .off-canvas {
@@ -228,7 +233,8 @@ a {
     img {
       max-width: 100%;
       height: auto;
-      animation: float 6s ease-in-out infinite;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
   }
 }

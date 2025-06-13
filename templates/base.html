@@ -13,12 +13,14 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="{% block canonical_url %}{{ site_url }}{{ request.path }}{% endblock %}">
 
+    {% load static %}
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="{% block og_type %}website{% endblock %}">
     <meta property="og:url" content="{% block og_url %}{{ site_url }}{{ request.path }}{% endblock %}">
     <meta property="og:title" content="{% block og_title %}{{ site_name }} - Professional Web Development{% endblock %}">
     <meta property="og:description" content="{% block og_description %}{{ site_description }}{% endblock %}">
-    <meta property="og:image" content="{% block og_image %}{{ site_url }}/static/img/og-image.png{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ site_url }}{% static 'img/og-image.svg' %}{% endblock %}">
     {% if facebook_app_id %}<meta property="fb:app_id" content="{{ facebook_app_id }}">{% endif %}
 
     <!-- Twitter -->
@@ -26,11 +28,11 @@
     <meta name="twitter:site" content="{{ twitter_username }}">
     <meta name="twitter:title" content="{% block twitter_title %}{{ site_name }} - Professional Web Development{% endblock %}">
     <meta name="twitter:description" content="{% block twitter_description %}{{ site_description }}{% endblock %}">
-    <meta name="twitter:image" content="{% block twitter_image %}{{ site_url }}/static/img/twitter-image.png{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{{ site_url }}{% static 'img/twitter-image.svg' %}{% endblock %}">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{% block favicon %}{{ site_url }}/static/img/favicon.png{% endblock %}">
-    <link rel="apple-touch-icon" href="{% block apple_touch_icon %}{{ site_url }}/static/img/apple-touch-icon.png{% endblock %}">
+    <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.svg' %}">
+    <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.svg' %}">
 
     <!-- Foundation CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/css/foundation.min.css">
@@ -44,7 +46,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Custom CSS -->
-    {% load static %}
     {% load compress %}
     {% compress css %}
     <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/main.scss' %}">
@@ -61,7 +62,7 @@
       "name": "{{ site_name }}",
       "description": "{{ site_description }}",
       "url": "{{ site_url }}",
-      "logo": "{{ site_url }}/static/img/logo.png",
+      "logo": "{{ site_url }}{% static 'img/logo.svg' %}",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "San Francisco",
@@ -114,7 +115,7 @@
             <div class="top-bar" id="main-menu">
                 <div class="top-bar-left">
                     <a href="#hero" class="logo" data-smooth-scroll>
-                        <span class="logo-text">CodeBySiri</span>
+                        <img src="{% static 'img/logo.svg' %}" alt="CodeBySiri" class="logo-image" height="40">
                     </a>
                 </div>
                 <div class="top-bar-right show-for-medium">
@@ -157,10 +158,10 @@
                         <div class="cell medium-4">
                             <h4>Connect</h4>
                             <div class="social-icons">
-                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="https://github.com/SIRI-bit-tech" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="https://www.linkedin.com/in/siri-tech/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+<!--                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>-->
+                                <a href="https://www.instagram.com/bigsiri12/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                             </div>
                         </div>
                     </div>

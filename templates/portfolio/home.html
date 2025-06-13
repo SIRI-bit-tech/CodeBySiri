@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 <!-- Hero Section -->
@@ -18,7 +19,7 @@
             </div>
             <div class="cell medium-6">
                 <div class="hero-image">
-                    <img src="{{ MEDIA_URL }}hero-image.svg" alt="CodeBySiri" class="hero-img">
+                    <img src="{% static 'img/hero.webp' %}" alt="CodeBySiri Expert Web Development" class="hero-img">
                 </div>
             </div>
         </div>
@@ -182,15 +183,15 @@
                 <div class="contact-info">
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
-                        <span>hello@codebysiri.com</span>
+                        <span>siritech001@gmail.com</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
-                        <span>+1 (555) 123-4567</span>
+                        <span>+234 807 230 7541</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>San Francisco, CA</span>
+                        <span>Asaba, Delta State</span>
                     </div>
 
                     <div class="social-icons">
