@@ -395,18 +395,24 @@ a:hover {
   .top-bar {
     background-color: var(--secondary-color);
     justify-content: flex-start;
+    box-shadow: none;
   }
 
   .top-bar .logo {
-    color: var(--white);
+    color: var(--primary-color);
   }
 
   .top-bar .logo-image {
-    filter: brightness(0) invert(1);
+    /* Keep the logo as is - it's already orange in the SVG */
+    filter: none;
   }
 
   .top-bar-right {
-    display: none;
+    display: none !important;
+  }
+
+  .show-for-medium {
+    display: none !important;
   }
 }
 
@@ -419,7 +425,7 @@ a:hover {
   display: none;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .hide-for-medium {
     display: none;
   }
